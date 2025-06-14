@@ -1,5 +1,15 @@
 'use client';
 
+/**
+ * Festival Page
+ * Route: /festival
+ * Description: Displays all festivals celebrated in The Blue Lotus Park community
+ * Features:
+ * - Hero section with community description
+ * - Grid of festival cards with descriptions
+ * - Animated transitions and hover effects
+ */
+
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 

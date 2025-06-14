@@ -1,22 +1,33 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+/**
+ * Home Page
+ * Route: /
+ * Description: The main landing page of The Blue Lotus Park website
+ * Features:
+ * - Hero section with community introduction
+ * - Features and amenities showcase
+ * - Community benefits section
+ * - Call-to-action section
+ */
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-}
+  transition: { duration: 0.5 },
+};
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 export default function Home() {
   return (
@@ -26,19 +37,19 @@ export default function Home() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50 z-10" />
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/assets/hero-bg.jpg')" }}
+            style={{ backgroundImage: "url('/assets/view-city.jpg')" }}
           />
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative z-20 text-center text-white px-4 max-w-4xl mx-auto"
         >
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -47,27 +58,30 @@ export default function Home() {
             When Stories Find Their Perfect Audience
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="text-xl md:text-2xl mb-8 text-gray-200"
           >
-            Real connections aren't always easy—<br />
+            Real connections aren't always easy—
+            <br />
             But when fun leads the way, everything just clicks.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
             className="max-w-2xl mx-auto mb-12"
           >
-            <p className="text-lg md:text-xl text-gray-200 mb-6">
-              Share moments. Discover voices. Build real bonds.<br />
-              Whether you're telling your story or finding someone else's,<br />
+            {/* <p className="text-lg md:text-xl text-gray-200 mb-6">
+              Share moments. Discover voices. Build real bonds.
+              <br />
+              Whether you're telling your story or finding someone else's,
+              <br />
               this is where conversations turn into connections.
-            </p>
+            </p> */}
             <p className="text-lg md:text-xl text-primary-300 font-medium">
               ✨ Join the space where stories feel heard—and people feel seen.
             </p>
@@ -88,6 +102,54 @@ export default function Home() {
         </motion.div>
       </section>
 
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h1 className="text-3xl font-display font-bold text-gray-900 mb-6">
+                The Blue Lotus Park - A Community Built for Comfort and Harmony
+              </h1>
+              <p className="text-gray-600 mb-4">
+                From the spacious apartments to the friendly management,
+                everything about this society is exceptional. My kids love the
+                play area, and we enjoy the peaceful environment.
+              </p>
+              <h4 className="text-2xl font-display font-bold text-gray-900 mb-6">
+                Why it's way better
+              </h4>
+              <ul className="list-disc list-inside text-gray-600 space-y-1">
+                <li>Premium apartments with modern designs</li>
+                <li>Sustainable and eco-friendly community</li>
+                <li>Lush landscaped gardens and open spaces</li>
+                <li>
+                  Amenities including a clubhouse, gym, and
+                  swimming pool
+                </li>
+                <li>24/7 security and maintenance services</li>
+                <li>Family-friendly environment with dedicated play areas</li>
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative h-[400px] rounded-2xl overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/assets/building-society.jpg')" }} />
+              {/* <div className="absolute inset-0 flex items-center justify-center text-white text-4xl font-display">
+                Our Journey
+              </div> */}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,10 +161,11 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              What We Offer
+              Unmatched Amenities for a Better Lifestyle
             </h2>
             <p className="text-xl text-gray-600">
-              Experience the best of sports, culture, and entertainment
+              At Blue Lotus Park, we prioritize your lifestyle needs with
+              state-of-the-art facilities:
             </p>
           </motion.div>
 
@@ -115,19 +178,24 @@ export default function Home() {
           >
             {[
               {
-                title: 'Sports Facilities',
-                description: 'State-of-the-art sports facilities for all ages and skill levels',
-                icon: '🏃‍♂️',
+                title: "Fully equipped gym and yoga room",
+                // description: 'State-of-the-art sports facilities for all ages and skill levels',
+                icon: "🏃‍♂️",
               },
               {
-                title: 'Cultural Festivals',
-                description: 'Celebrate diversity with our vibrant cultural festivals',
-                icon: '🎪',
+                title: "Landscaped gardens and jogging tracks",
+                // description: 'Celebrate diversity with our vibrant cultural festivals',
+                icon: "🎪",
               },
               {
-                title: 'Events & Activities',
-                description: 'Regular events and activities for the whole family',
-                icon: '🎯',
+                title: "Dedicated children's play areas",
+                // description: 'Regular events and activities for the whole family',
+                icon: "🎯",
+              },
+              {
+                title: "Dedicated children's play areas",
+                // description: 'Regular events and activities for the whole family',
+                icon: "🎯",
               },
             ].map((feature, index) => (
               <motion.div
@@ -139,7 +207,7 @@ export default function Home() {
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                {/* <p className="text-gray-600">{feature.description}</p> */}
               </motion.div>
             ))}
           </motion.div>

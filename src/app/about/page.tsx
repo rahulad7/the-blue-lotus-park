@@ -1,5 +1,16 @@
 'use client'
 
+/**
+ * About Page
+ * Route: /about
+ * Description: Information about The Blue Lotus Park community
+ * Features:
+ * - Hero section with community introduction
+ * - Our Story section
+ * - Values and principles
+ * - Team members showcase
+ */
+
 import { motion } from 'framer-motion'
 
 const fadeInUp = {
@@ -20,7 +31,7 @@ export default function About() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary-50 to-secondary-50">
+      <section className="relative min-h-[500px] flex items-center justify-center" style={{ backgroundImage: "url('/assets/view-city.jpg')" }}>
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
