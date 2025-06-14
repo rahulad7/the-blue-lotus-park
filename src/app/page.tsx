@@ -13,18 +13,55 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
+const features = [
+  {
+    title: "Fully equipped gym and yoga room",
+    description:
+      "State-of-the-art facilities including swimming pool, gym, and sports complex.",
+    image: "/assets/gym-fitness-equipment.jpg",
+    // icon: "🏊‍♂️",
+  },
+  {
+    title: "Landscaped gardens and jogging tracks",
+    description:
+      "Lush gardens, walking trails, and dedicated play areas for children.",
+    image: "/assets/park-garden.jpg",
+    // icon: "🌳",
+  },
+  {
+    title: "Dedicated children’s play areas",
+    description:
+      "Regular cultural events, festivals, and social gatherings for all residents.",
+    image: "/assets/kinderlaa.jpg",
+    // icon: "🎉",
+  },
+  {
+    title: "Community Hall for Events",
+    description: "24/7 security with CCTV surveillance and trained personnel.",
+    image: "/assets/event-hall.jpg",
+    // icon: "🔒",
+  },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
 };
 
-const staggerContainer = {
-  animate: {
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
     transition: {
-      staggerChildren: 0.1,
+      duration: 0.5,
     },
   },
 };
@@ -42,66 +79,40 @@ export default function Home() {
             style={{ backgroundImage: "url('/assets/view-city.jpg')" }}
           />
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-20 text-center text-white px-4 max-w-4xl mx-auto"
-        >
+        <div className="relative z-10 text-center px-4">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl md:text-6xl font-display font-bold mb-6"
+            transition={{ duration: 0.8 }}
+            className="text-4xl text-white md:text-6xl font-bold mb-6"
           >
             When Stories Find Their Perfect Audience
           </motion.h1>
-
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-xl md:text-2xl mb-8 text-gray-200"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl text-white md:text-2xl mb-8 max-w-3xl mx-auto"
           >
-            Real connections aren't always easy—
-            <br />
-            But when fun leads the way, everything just clicks.
+            Discover a community where every story matters, every voice is
+            heard, and every connection is meaningful.
           </motion.p>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="max-w-2xl mx-auto mb-12"
-          >
-            {/* <p className="text-lg md:text-xl text-gray-200 mb-6">
-              Share moments. Discover voices. Build real bonds.
-              <br />
-              Whether you're telling your story or finding someone else's,
-              <br />
-              this is where conversations turn into connections.
-            </p> */}
-            <p className="text-lg md:text-xl text-primary-300 font-medium">
-              ✨ Join the space where stories feel heard—and people feel seen.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Link
               href="/about"
-              className="inline-flex items-center bg-primary-600 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 hover:bg-primary-700 hover:shadow-lg hover:shadow-primary-500/30"
+              className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 transition-colors duration-200"
             >
               Explore Now
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
       </section>
 
+      {/* Our Story Section */}
       <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -111,23 +122,23 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-3xl font-display font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-display font-bold text-gray-900 mb-6">
                 The Blue Lotus Park - A Community Built for Comfort and Harmony
-              </h1>
+              </h2>
               <p className="text-gray-600 mb-4">
                 From the spacious apartments to the friendly management,
                 everything about this society is exceptional. My kids love the
                 play area, and we enjoy the peaceful environment.
               </p>
-              <h4 className="text-2xl font-display font-bold text-gray-900 mb-6">
+              <h3 className="text-gray-600 text-2xl font-bold">
                 Why it's way better
-              </h4>
+              </h3>
               <ul className="list-disc list-inside text-gray-600 space-y-1">
                 <li>Premium apartments with modern designs</li>
                 <li>Sustainable and eco-friendly community</li>
                 <li>Lush landscaped gardens and open spaces</li>
                 <li>
-                  Amenities including a clubhouse, gym, and
+                  Axmenities including a clubhouse, gym, and
                   swimming pool
                 </li>
                 <li>24/7 security and maintenance services</li>
@@ -141,16 +152,70 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="relative h-[400px] rounded-2xl overflow-hidden"
             >
-              <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/assets/building-society.jpg')" }} />
-              {/* <div className="absolute inset-0 flex items-center justify-center text-white text-4xl font-display">
-                Our Journey
-              </div> */}
+              <div className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/assets/building-society.jpg')" }} />
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Features & Amenities
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Experience luxury living with our world-class amenities and
+              facilities designed for your comfort and convenience.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-4xl">
+                    {/* {feature.icon} */}
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Community Benefits Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -160,54 +225,48 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              Unmatched Amenities for a Better Lifestyle
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Why Choose The Blue Lotus Park?
             </h2>
-            <p className="text-xl text-gray-600">
-              At Blue Lotus Park, we prioritize your lifestyle needs with
-              state-of-the-art facilities:
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Join a community that values quality living, social connections,
+              and sustainable practices.
             </p>
           </motion.div>
 
           <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {[
               {
-                title: "Fully equipped gym and yoga room",
-                // description: 'State-of-the-art sports facilities for all ages and skill levels',
-                icon: "🏃‍♂️",
+                title: "Quality Living",
+                description:
+                  "Premium construction and modern amenities for a comfortable lifestyle.",
               },
               {
-                title: "Landscaped gardens and jogging tracks",
-                // description: 'Celebrate diversity with our vibrant cultural festivals',
-                icon: "🎪",
+                title: "Social Connections",
+                description:
+                  "Regular community events and activities to foster meaningful relationships.",
               },
               {
-                title: "Dedicated children's play areas",
-                // description: 'Regular events and activities for the whole family',
-                icon: "🎯",
+                title: "Sustainable Living",
+                description:
+                  "Eco-friendly practices and green spaces for a better tomorrow.",
               },
-              {
-                title: "Dedicated children's play areas",
-                // description: 'Regular events and activities for the whole family',
-                icon: "🎯",
-              },
-            ].map((feature, index) => (
+            ].map((benefit, index) => (
               <motion.div
                 key={index}
-                variants={fadeInUp}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-200"
+                variants={itemVariants}
+                className="bg-gray-50 p-8 rounded-xl"
               >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {feature.title}
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  {benefit.title}
                 </h3>
-                {/* <p className="text-gray-600">{feature.description}</p> */}
+                <p className="text-gray-600">{benefit.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -215,7 +274,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary-50">
+      <section className="py-20 bg-primary-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -223,17 +282,14 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl font-display font-bold text-primary-900 mb-4">
-              Ready to Experience The Blue Lotus Park?
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+              Ready to Join Our Community?
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Join us for an unforgettable experience
-            </p>
             <Link
               href="/contact"
-              className="inline-block bg-primary-600 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-primary-700 transition-colors duration-200"
+              className="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
             >
-              Get in Touch
+              Contact Us Today
             </Link>
           </motion.div>
         </div>

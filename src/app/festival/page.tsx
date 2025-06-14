@@ -16,12 +16,12 @@ import Image from 'next/image';
 const festivals = [
   {
     name: 'Makar Sankranti',
-    image: '/assets/festivals/makar-sankranti.jpg',
+    image: '/assets/makar-sankranti.jpg',
     description: 'Celebrate the harvest festival with kite flying and traditional sweets'
   },
   {
     name: 'Republic Day',
-    image: '/assets/festivals/republic-day.jpg',
+    image: '/assets/india-republic.jpg',
     description: 'Honoring our nation\'s constitution with cultural programs'
   },
   {
@@ -136,7 +136,7 @@ export default function Festival() {
               Festivals We Celebrate
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              These are the categories of sports (for men & women)
+              
             </p>
           </motion.div>
 
