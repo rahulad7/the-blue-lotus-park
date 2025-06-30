@@ -12,6 +12,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const festivals = [
   {
@@ -150,33 +151,39 @@ export default function Festival() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {festivals.map((festival, index) => (
-              <motion.div
+              <Link
                 key={festival.name}
-                variants={itemVariants}
-                className="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                href={`/festival/${encodeURIComponent(festival.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, ''))}`}
+                passHref
+                className="block"
               >
-                <div className="aspect-w-16 aspect-h-9 relative h-64">
-                  <Image
-                    src={festival.image}
-                    alt={festival.name}
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority={index < 3}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="absolute inset-0 bg-primary-900/20 group-hover:bg-primary-900/40 transition-colors duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">
-                      {festival.name}
-                    </h3>
-                    <p className="text-gray-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {festival.description}
-                    </p>
+                <motion.div
+                  variants={itemVariants}
+                  className="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                >
+                  <div className="aspect-w-16 aspect-h-9 relative h-64">
+                    <Image
+                      src={festival.image}
+                      alt={festival.name}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={index < 3}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    <div className="absolute inset-0 bg-primary-900/20 group-hover:bg-primary-900/40 transition-colors duration-300" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        {festival.name}
+                      </h3>
+                      <p className="text-gray-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {festival.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </motion.div>
+              </Link>
             ))}
           </motion.div>
         </div>
