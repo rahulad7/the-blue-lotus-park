@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+:root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-  }
+}
 
   body {
     @apply antialiased;
@@ -24,7 +24,7 @@
 
   .btn-primary {
     @apply bg-primary-600 text-white hover:bg-primary-700;
-  }
+}
 
   .btn-secondary {
     @apply bg-secondary-600 text-white hover:bg-secondary-700;

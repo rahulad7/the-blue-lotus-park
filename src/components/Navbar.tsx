@@ -28,7 +28,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 bg-white shadow-lg ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
@@ -44,7 +44,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={`text-sm font-medium transition-colors duration-200 ${
-                  isScrolled ? 'text-gray-900 hover:text-primary-600' : 'text-white hover:text-primary-200'
+                  isScrolled ? 'text-gray-900 hover:text-primary-600' : 'text-black hover:text-primary-200'
                 }`}
               >
                 {item.name}

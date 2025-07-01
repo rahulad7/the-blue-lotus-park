@@ -103,7 +103,7 @@ export default function Festival() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/50 z-10" />
+                 <div className="absolute inset-0 bg-gradient-to-b text-white from-black/70 to-black/50 z-10" />
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: "url('/assets/all-festival-banner.png')" }}

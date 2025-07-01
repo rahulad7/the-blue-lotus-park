@@ -132,7 +132,8 @@ export default function FestivalDetailPage() {
             className="mb-8"
             onSubmit={e => {
               e.preventDefault();
-              router.push(`/festival/${slug}/checkout`);
+              const amount = (document.getElementById('contribution') as HTMLInputElement)?.value || 1;
+              router.push(`/festival/${slug}/checkout?amount=${amount}`);
             }}
           >
             <label className="block text-gray-700 font-medium mb-2" htmlFor="contribution">
@@ -150,7 +151,7 @@ export default function FestivalDetailPage() {
             </div>
             <button
               type="submit"
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-full text-lg transition-all shadow-md"
+              className="bg-primary-600 hover:bg-primary-700 text-white font-semibold px-8 py-3 rounded-full text-lg transition-all shadow-md"
             >
               DONATE »
             </button>

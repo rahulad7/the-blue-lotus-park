@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { FaRupeeSign } from "react-icons/fa";
@@ -24,43 +24,73 @@ const festivals = [
 
 export default function FestivalCheckoutPage() {
   const { slug } = useParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const festival = festivals.find(f => f.slug === slug);
-  const [amount, setAmount] = useState(1);
+  const initialAmount = Number(searchParams.get("amount")) || 1;
+  const [amount, setAmount] = useState(initialAmount);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value.trim();
+    const flat = (form.elements.namedItem("flat") as HTMLInputElement)?.value.trim();
+    const phone = (form.elements.namedItem("phone") as HTMLInputElement)?.value.trim();
+    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value.trim();
+    const newErrors: { [key: string]: string } = {};
+    if (!name) newErrors.name = "Billing Name is a required field.";
+    if (!flat) newErrors.flat = "Billing Flat Number is a required field.";
+    if (!phone) newErrors.phone = "Billing Phone is a required field.";
+    if (!email) newErrors.email = "Billing Email address is a required field.";
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      // Proceed to payment logic here
+      alert("Proceeding to payment...");
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-50 py-12 px-4 flex flex-col items-center justify-center">
+      <div className="w-full max-w-5xl mb-8 flex items-center">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center text-orange-500 hover:text-orange-700 font-semibold mr-4 px-3 py-2 rounded transition-colors border border-orange-200 bg-white shadow-sm"
+        >
+          ← Back
+        </button>
+        <h1 className="text-3xl font-bold text-gray-900 font-display">Checkout</h1>
+      </div>
       <div className="w-full max-w-5xl bg-white rounded-2xl shadow-lg flex flex-col md:flex-row overflow-hidden">
-        {/* Left: Donor Details Form */}
         <div className="md:w-2/3 w-full p-8 md:p-12">
           <h2 className="text-2xl font-bold mb-8 font-display text-gray-800">Donor details</h2>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block font-semibold mb-1" htmlFor="name">Name <span className="text-orange-500">*</span></label>
-              <input id="name" type="text" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              <input id="name" name="name" type="text" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              {errors.name && <div className="text-red-500 text-sm mt-1">{errors.name}</div>}
             </div>
             <div>
               <label className="block font-semibold mb-1" htmlFor="flat">Flat Number <span className="text-orange-500">*</span></label>
-              <input id="flat" type="text" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              <input id="flat" name="flat" type="text" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              {errors.flat && <div className="text-red-500 text-sm mt-1">{errors.flat}</div>}
             </div>
             <div>
               <label className="block font-semibold mb-1" htmlFor="phone">Phone <span className="text-orange-500">*</span></label>
-              <input id="phone" type="tel" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              <input id="phone" name="phone" type="tel" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              {errors.phone && <div className="text-red-500 text-sm mt-1">{errors.phone}</div>}
             </div>
             <div>
               <label className="block font-semibold mb-1" htmlFor="email">Email address <span className="text-orange-500">*</span></label>
-              <input id="email" type="email" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              <input id="email" name="email" type="email" required className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              {errors.email && <div className="text-red-500 text-sm mt-1">{errors.email}</div>}
             </div>
+            {/* <button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 rounded-full text-lg transition-all shadow-md">
+              PROCEED TO PAYMENT
+            </button> */}
           </form>
         </div>
 
-        {/* Divider with notch */}
-        <div className="hidden md:flex flex-col items-center justify-center px-2">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 20 H16 L20 24 L24 20 H40" stroke="#222" strokeWidth="2" fill="none" />
-          </svg>
-        </div>
-
-        {/* Right: Donation Summary */}
         <div className="md:w-1/3 w-full bg-gray-50 p-8 flex flex-col border-l border-gray-200">
           <h3 className="text-lg font-bold mb-6 font-display text-gray-800">Your donation</h3>
           <div className="mb-4 flex justify-between text-base font-medium">
@@ -82,12 +112,13 @@ export default function FestivalCheckoutPage() {
           <div className="text-xs text-gray-500 mb-6">
             Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <Link href="/privacy" className="underline text-orange-500">privacy policy</Link>.
           </div>
-          <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-full text-lg transition-all shadow-md">
-            PROCEED TO PAYMENT
-          </button>
+          <div>
+            <button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 rounded-full text-lg transition-all shadow-md">
+              PROCEED TO PAYMENT
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    
   );
 } 
