@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model festival_transactions {
+  id             Int       @id(map: "festival_transcations_pkey") @default(autoincrement())
+  name           String    @db.VarChar(255)
+  flat           String    @db.VarChar(255)
+  phone          String    @db.VarChar(50)
+  email          String    @db.VarChar(255)
+  amount         Decimal   @db.Decimal(10, 2)
+  festival       String    @db.VarChar(255)
+  created_at     DateTime? @default(now()) @db.Timestamp(6)
+  transaction_id String    @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+}
+
+model test_table {
+  id Int @id @default(autoincrement())
+}

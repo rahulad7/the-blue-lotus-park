@@ -137,7 +137,7 @@ export default function FestivalDetailPage() {
             }}
           >
             <label className="block text-gray-700 font-medium mb-2" htmlFor="contribution">
-              Your Contribution <span className="text-orange-500">*</span>
+              Entry Fee <span className="text-orange-500">*</span>
             </label>
             <div className="flex items-center mb-4">
               <span className="text-2xl mr-2">₹</span>
